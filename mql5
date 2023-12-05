@@ -1,0 +1,80 @@
+mql5
+//+------------------------------------------------------------------+
+//|                                           Breakout Project.mq5   |
+//|                          Copyright © 2021, Forex Robot Easy Team  |
+//|                                   https://www.forexroboteasy.com |
+//+------------------------------------------------------------------+
+
+// Required input parameters
+input ENUM_MODE Mode = MODE_PENDING_ORDER;  // Select trading mode
+input double StopLoss = 20;                  // Stop loss in points
+input double TakeProfit = 30;                // Take profit in points
+input double TrailingStop = 10;              // Trailing stop in points
+input double MinimumDeposit = 100;           // Minimum deposit required
+
+//+------------------------------------------------------------------+
+//| Expert initialization function                                   |
+//+------------------------------------------------------------------+
+int OnInit()
+{
+   // Check if the minimum deposit requirement is met
+   if(AccountInfoDouble(ACCOUNT_BALANCE) < MinimumDeposit)
+   {
+      Print('Minimum deposit requirement not met. Please deposit at least ', MinimumDeposit, ' USD.');
+      ExpertRemove();
+      return INIT_FAILED;
+   }
+
+   // Print the selected trading mode
+   if(Mode == MODE_PENDING_ORDER)
+   {
+      Print('Trading mode: Pending Order');
+   }
+   else if(Mode == MODE_MARKET_ORDER)
+   {
+      Print('Trading mode: Market Order');
+   }
+   else
+   {
+      Print('Invalid trading mode selected.');
+      ExpertRemove();
+      return INIT_FAILED;
+   }
+
+   return INIT_SUCCEEDED;
+}
+
+//+------------------------------------------------------------------+
+//| Expert deinitialization function                                 |
+//+------------------------------------------------------------------+
+void OnDeinit(const int reason)
+{
+   // Perform any necessary cleanup
+}
+
+//+------------------------------------------------------------------+
+//| Expert start function                                            |
+//+------------------------------------------------------------------+
+void OnTick()
+{
+   // Place pending order
+   if(Mode == MODE_PENDING_ORDER)
+   {
+      // Place pending order code
+      // ...
+   }
+   // Place market order
+   else if(Mode == MODE_MARKET_ORDER)
+   {
+      // Place market order code
+      // ...
+   }
+
+   // Set stop loss and take profit
+   // ...
+   
+   // Apply trailing stop
+   // ...
+}
+
+//+------------------------------------------------------------------+
